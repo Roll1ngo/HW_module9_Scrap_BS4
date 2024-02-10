@@ -1,5 +1,6 @@
 import redis
 from redis_lru import RedisLRU
+from rich import print
 
 from models import Author, Quote
 
@@ -28,10 +29,10 @@ def find_quotes_by_author(author_name: str) -> str or list:
     if author:
         quotes = Quote.objects(author=author.id)
         for q in quotes:
-            quotes_list.append( f'{q.quote}, \u00A9 {author.fullname}')
+            quotes_list.append(f'{q.quote}, \u00A9 {author.fullname}')
         return quotes_list
     else:
-        return f'No author found with request {author_name}'
+        return f'No author found for this request {author_name}'
 
 
 COMMANDS = {

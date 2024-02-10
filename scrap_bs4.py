@@ -18,7 +18,7 @@ def scrape_page(url, quotes_data_list: list, authors_data_list: list):
             "quote": quote_text
         })
 
-        if author_name not in authors_data_list:
+        if author_name not in [name['fullname'] for name in authors_data_list]:
             author_url = quote.find('a')['href']
             author_data = scrape_author(f"http://quotes.toscrape.com{author_url}", author_name)
             authors_data_list.append(author_data)
